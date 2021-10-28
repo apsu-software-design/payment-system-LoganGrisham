@@ -40,7 +40,7 @@ function showMainMenu(psc:PaymentSystemContext) {
 }
 
 function showCreditCardPaymentMenu(psc:PaymentSystemContext) {
-    new PaymentSystemContext("CreditCard")
+    new PaymentSystemContext("CreditCard") //no need for more than facade style because all code is in indiv class now.
 }
 
 function showBankDraftPaymentMenu(psc:PaymentSystemContext) {
