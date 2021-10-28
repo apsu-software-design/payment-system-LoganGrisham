@@ -8,7 +8,7 @@ import {PaymentSystemContext} from './payment_systems';
  * Function to run the UI
  */
 export function start() {
-  showMainMenu(new PaymentSystemContext());
+  showMainMenu(new PaymentSystemContext(""));
 }
 
 /**
@@ -40,73 +40,18 @@ function showMainMenu(psc:PaymentSystemContext) {
 }
 
 function showCreditCardPaymentMenu(psc:PaymentSystemContext) {
-  console.log('Enter Credit Card Payment Details.');
-
-  let name:string = readlineSync.question('  Name: ');
-  let creditCardNumber:string = readlineSync.question('  Credit Card Number: ');
-  let creditCardExpirationDate:string = readlineSync.question('  Credit Card Expiration Date (MM/DD): ');
-  
-  let valid = /^[\w.' ]+$/.test(name) && /\d{15,16}/.test(creditCardNumber) && /\d\d\/\d\d/.test(creditCardExpirationDate);
-
-  if (valid) {
-      console.log("Your payment information is being encrypted.");
-
-      console.log("The payment is being processed.")
-  }
-  else {
-      console.log('The payment is invalid.');
-  }
+    new PaymentSystemContext("CreditCard")
 }
 
 function showBankDraftPaymentMenu(psc:PaymentSystemContext) {
-  console.log('Enter Bank Account Details.');
-  let name:string = readlineSync.question('  Name: ');
-  let bankRoutingNumber:string = readlineSync.question('  Bank Routing Number: ');
-  let bankAccountNumber:string = readlineSync.question('  Bank Account Number: ');
-
-  let valid = /^[\w.' ]+$/.test(name) && /\d{9}/.test(bankRoutingNumber) && /\d{6,12}/.test(bankAccountNumber);
-
-  if (valid) {
-      console.log("Your payment information is being encrypted.");
-
-      console.log("The payment is being processed.")
-  }
-  else {
-      console.log('The payment is invalid.');
-  }
+    new PaymentSystemContext("BankDraft")
 }
 
 function showOnlinePaymentMenu(psc:PaymentSystemContext) {
-  console.log('Enter Online Payment Details.');
-  let email:string = readlineSync.question('  Enter Your Email Address: ');
-  let paymentPassword:string = readlineSync.question('  Enter Your Payment Password: ');
-
-  let valid = /^[\w@.]+$/.test(email) && /\w+/.test(paymentPassword);
-
-  if (valid) {
-      console.log("Your payment information is being encrypted.");
-
-      console.log("The payment is being processed.")
-  }
-  else {
-      console.log('The payment is invalid.');
-  }
+    new PaymentSystemContext("OnlinePayment")
 }
 
 function showOfflinePaymentMenu(psc:PaymentSystemContext) {
-  console.log('Enter Offline Payment Details.');
-  let name:string = readlineSync.question('  Name: ');
-  let billingAddress:string = readlineSync.question('  Enter Your Billing Address: ');
-
-  let valid = /^[\w.' ]+$/.test(name) && /^[\w.' ]+$/.test(billingAddress);
-
-  if (valid) {
-      console.log("Your payment information is being encrypted.");
-
-      console.log("The payment is being processed.")
-  }
-  else {
-      console.log('The payment is invalid.');
-  }
+    new PaymentSystemContext("OfflinePayment")
 }
 
